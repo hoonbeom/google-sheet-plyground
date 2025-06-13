@@ -27,6 +27,11 @@ function doGet(e) {
 
     if (parameter.method === 'PATCH') {
         const id = Number(parameter.id);
+        const lastRow = sheet.getLastRow();
+        if (id + 1 > lastRow) {
+            return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid ID: data does not exist' })).setMimeType(ContentService.MimeType.JSON);
+        }
+
         fields.forEach((field, j) => {
             if (typeof parameter[field] !== 'undefined') {
                 sheet.getRange(id + 1, j + 2).setValue(parameter[field]);
@@ -38,6 +43,11 @@ function doGet(e) {
 
     if (parameter.method === 'PUT') {
         const id = Number(parameter.id);
+        const lastRow = sheet.getLastRow();
+        if (id + 1 > lastRow) {
+            return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid ID: data does not exist' })).setMimeType(ContentService.MimeType.JSON);
+        }
+
         const values = fields.map((field) => parameter[field]);
         sheet.getRange(id + 1, 1, 1, values.length + 1).setValues([[id, ...values]]);
 

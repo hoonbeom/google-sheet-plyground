@@ -1,7 +1,8 @@
 import GoogleSheet from './lib/google-sheet';
 
 const googleSheet = new GoogleSheet({
-    url: 'https://script.google.com/macros/s/AKfycbxcAdaJsiCR17nsZOeiJOwbWv_YsqUu57gnwDmNffW_9D0Ws_2dUcFzF0HKVEzlmLmy/exec'
+    // url: 'https://script.google.com/macros/s/AKfycbxcAdaJsiCR17nsZOeiJOwbWv_YsqUu57gnwDmNffW_9D0Ws_2dUcFzF0HKVEzlmLmy/exec'
+    url: 'https://script.google.com/macros/s/AKfycbxGRmEczEslMTStb_OHrIZvX22MhgOkCsBikgc4pKW0rUKX_OwFL6QwMS8R1ItVxdor/exec'
 });
 
 export default function App() {
