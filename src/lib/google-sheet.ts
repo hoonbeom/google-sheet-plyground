@@ -9,7 +9,6 @@ class GoogleSheet {
      */
     constructor({ url }: { url: string }) {
         this.url = url;
-
     }
     /**
      * Select
