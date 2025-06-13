@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import GoogleSheet from './lib/google-sheet';
 
-function App() {
-  const [count, setCount] = useState(0)
+const googleSheet = new GoogleSheet({
+    url: 'https://script.google.com/macros/s/AKfycbxcAdaJsiCR17nsZOeiJOwbWv_YsqUu57gnwDmNffW_9D0Ws_2dUcFzF0HKVEzlmLmy/exec'
+});
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App() {
+    const sheet = 'Sheet1';
+    return (
+        <>
+            <div>
+                <button
+                    onClick={() => {
+                        googleSheet.GET({ sheet }).then((data) => console.log(data));
+                    }}
+                >
+                    GET
+                </button>
+                <button
+                    onClick={() => {
+                        googleSheet.PUT({ sheet, name: 'name', age: 'age', good: 'good', id: '6' });
+                    }}
+                >
+                    PUT
+                </button>
+                <button
+                    onClick={() => {
+                        googleSheet.PATCH({ sheet, id: '6', name: 'asdf', age: 'asdf' });
+                    }}
+                >
+                    PATCH
+                </button>
+                <button
+                    onClick={() => {
+                        googleSheet.POST({ sheet, name: 'google', age: 'dd', good: 'adsf' });
+                    }}
+                >
+                    POST
+                </button>
+            </div>
+        </>
+    );
 }
-
-export default App
